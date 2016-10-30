@@ -7,10 +7,8 @@ var bookshelf = require('bookshelf')(db);
 // Collections correlate to tables in a DB
 // Bookshelf uses both of these terms
 var AccountModel = bookshelf.Model.extend({
-    tableName: 'user_accounts'
+    tableName: 'users_accounts'
 });
-
-console.log('PartyModel has loaded.');
 
 module.exports = AccountModel ;
 

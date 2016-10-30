@@ -4,29 +4,37 @@ var gulp = require('gulp');
 var nodemon = require('gulp-nodemon');
 var db = require('./models/db');
 
-gulp.task('db_create_user_table', function() {
-    var sqlString = "create table user_accounts (" +
+// CREATE USER ACCOUNTS TABLE
+gulp.task('db_create_user_account', function() {
+    var sqlString = "create table user_account (" +
         "id int not null auto_increment, " +
-        "email varchar(255) not null, " +
-        "password_hash varchar(61) not null, " +
-        "primary key (id) " +
+        "username varchar(55) not null unique, " +
+        "password varchar(20) not null, " +
+        "email varchar (20) not null unique, " +
+        "primary key (id)" +
         ");";
     //callback(response)
     function cb(res) {
         console.log(res);
     }
     db.raw(sqlString).then(cb);
-    //db.raw(query).then(callback)
 });
-// section to drop SQL tables!
-gulp.task('db_drop_user_table', function() {
-    var sqlString = "drop table user_accounts;";
+
+// CREATE CONTENT TABLE
+gulp.task('db_create_content_table', function() {
+    var sqlString = "create table content_table (" +
+        "id int not null auto_increment, " +
+        "title varchar(255) not null, " +
+        "location varchar(255) not null, " +
+        "comment varchar(255) not null, " +
+        "user_id int not null references users_account(id), " +
+        "primary key(id)" +
+        ");";
     //callback(response)
     function cb(res) {
         console.log(res);
     }
     db.raw(sqlString).then(cb);
-    //db.raw(query).then(callback)
 });
 
 

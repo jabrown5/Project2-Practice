@@ -1,10 +1,10 @@
 create database clambake;
 use clambake;
 
-create table users_account (
+create table users_accounts (
 	id int not null auto_increment,
 	username varchar(55) not null unique,
-	password varchar(20) not null,
+	password_hash varchar(61) not null,
 	email varchar (20) not null unique,
 	primary key (id)
 );
